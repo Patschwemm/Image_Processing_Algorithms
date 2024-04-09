@@ -8,6 +8,7 @@ set(SOURCES
     src/utils.cpp
     src/color/grayscale.cpp
     src/geometry/flip.cpp
+    src/geometry/resize.cpp
 )
 
 # Set the directory where your header files are located
@@ -16,6 +17,7 @@ set(INCLUDES
     include/utils.h
     include/color/grayscale.h
     include/geometry/flip.h
+    include/geometry/resize.h
 )
 
 # Set the directory where your include files are located

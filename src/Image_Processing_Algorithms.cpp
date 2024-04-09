@@ -5,6 +5,7 @@
 #include <utils.h>
 #include <color/grayscale.h>
 #include <geometry/flip.h>
+#include <geometry/resize.h>
 
 int main() {
 
@@ -22,23 +23,12 @@ int main() {
     ExecutionTimer timer = ExecutionTimer();
 
     timer.startClock();
-    cv::Mat grayscaleImg = grayscaleTransform(image, false);
-    timer.endClock("grayscale");
-    timer.startClock();
-    cv::Mat symmetricflipImg = symmetricflip(image, false);
-    timer.endClock("Symmteric");
-    cv::Mat vflipImg = vflip(image, false);
-    timer.endClock("vflip");
-    timer.startClock();
-    cv::Mat hflipImg = hflip(image, false);
-    timer.endClock("hflip");
+    cv::Mat resizedMat = nearestInterpolation(image, 1000, 1000);
+    timer.endClock("Resize");
 
     // Display the original and grayscale images
     cv::imshow("Original Image", image);
-    //cv::imshow("Grayscale Image", grayscaleImg);
-    cv::imshow("Symmetric Flipped Image", symmetricflipImg);
-    cv::imshow("Vertical Flipped Image", vflipImg);
-    cv::imshow("Horizontal Flipped Image", hflipImg);
+    cv::imshow("Resized Image", resizedMat);
 
     // Wait for a key press
     cv::waitKey(0);
