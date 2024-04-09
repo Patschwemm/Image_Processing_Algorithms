@@ -13,10 +13,9 @@ cv::Mat vflip(cv::Mat& input, const bool inplace) {
 	for (int row = 0; row < img_rows / 2; ++row) {
 		// Swap values
 		std::swap_ranges(topRow, topRow + img_cols, bottomRow);
-		// Move to the next row from the top
-		topRow++;
-		// Move to the previous row from the bottom
-		bottomRow--;
+
+		topRow = topRow + img_cols;
+		bottomRow = bottomRow - img_cols;
 	}
 
 	return flipOut;
@@ -47,11 +46,28 @@ cv::Mat symmetricflip(cv::Mat& input, bool inplace) {
 	return flipOut;
 }
 
-
-cv::Mat hflip(cv::Mat& input, bool inplace) {
+cv::Mat hflip(cv::Mat& input, const bool inplace) {
 	int img_rows = input.rows;
 	int img_cols = input.cols;
 
-	std::cout << "Rows: " << img_rows << " Cols: " << img_cols << std::endl;
-	return input;
+	// If inplace is true, operate directly on the input matrix
+	cv::Mat flipOut = inplace ? input : input.clone();
+
+	for (int row = 0; row < img_rows; ++row) {
+		// Pointer for left and right pixel
+		cv::Vec3b* leftPixel = flipOut.ptr<cv::Vec3b>(row);
+		cv::Vec3b* rightPixel = flipOut.ptr<cv::Vec3b>(row) + img_cols - 1;
+
+		// Iterate until left and right pointers meet
+		while (leftPixel < rightPixel) {
+			// Swap pixel values
+			std::swap(*leftPixel, *rightPixel);
+
+			// Move pointers towards each other
+			++leftPixel;
+			--rightPixel;
+		}
+	}
+
+	return flipOut;
 }

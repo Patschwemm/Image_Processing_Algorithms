@@ -18,15 +18,27 @@ int main() {
 
     std::cout << type2str(image.type()) << std::endl;
 
+    // to track time
+    ExecutionTimer timer = ExecutionTimer();
+
+    timer.startClock();
     cv::Mat grayscaleImg = grayscaleTransform(image, false);
+    timer.endClock("grayscale");
+    timer.startClock();
     cv::Mat symmetricflipImg = symmetricflip(image, false);
+    timer.endClock("Symmteric");
     cv::Mat vflipImg = vflip(image, false);
+    timer.endClock("vflip");
+    timer.startClock();
+    cv::Mat hflipImg = hflip(image, false);
+    timer.endClock("hflip");
 
     // Display the original and grayscale images
     cv::imshow("Original Image", image);
-    // cv::imshow("Grayscale Image", grayscaleImg);
+    //cv::imshow("Grayscale Image", grayscaleImg);
     cv::imshow("Symmetric Flipped Image", symmetricflipImg);
     cv::imshow("Vertical Flipped Image", vflipImg);
+    cv::imshow("Horizontal Flipped Image", hflipImg);
 
     // Wait for a key press
     cv::waitKey(0);
