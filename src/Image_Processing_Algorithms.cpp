@@ -23,14 +23,14 @@ int main() {
     ExecutionTimer timer = ExecutionTimer();
 
     timer.startClock();
-    cv::Mat nearestMat = nearestInterpolation(image, 1400, 2000);
+    cv::Mat nearestMat = nearestInterpolation(image, 700, 700);
     timer.endClock("Resize neasrest");
     timer.startClock();
-    cv::Mat bilinearMat = bilinearInterpolation(image, 200, 200);
+    cv::Mat bilinearMat = bilinearInterpolation(image, 700, 700);
     timer.endClock("Resize bilinear");
 
     // Display the original and grayscale images
-    //cv::imshow("Original Image", image);
+    cv::imshow("Original Image", image);
     cv::imshow("Resized Nearest Image", nearestMat);
     cv::imshow("Resized Bilinear Image", bilinearMat);
 

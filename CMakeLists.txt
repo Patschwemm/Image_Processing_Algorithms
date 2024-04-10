@@ -9,6 +9,7 @@ set(SOURCES
     src/color/grayscale.cpp
     src/geometry/flip.cpp
     src/geometry/resize.cpp
+    src/recognition/color_segmentation.cpp
 )
 
 # Set the directory where your header files are located
@@ -18,6 +19,7 @@ set(INCLUDES
     include/color/grayscale.h
     include/geometry/flip.h
     include/geometry/resize.h
+    include/recognition/color_segmentation_h
 )
 
 # Set the directory where your include files are located
