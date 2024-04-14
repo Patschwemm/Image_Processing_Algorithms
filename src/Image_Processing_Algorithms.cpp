@@ -6,6 +6,7 @@
 #include <color/grayscale.h>
 #include <geometry/flip.h>
 #include <geometry/resize.h>
+#include <filter/filter_alg.h>
 
 int main() {
 
@@ -23,16 +24,17 @@ int main() {
     ExecutionTimer timer = ExecutionTimer();
 
     timer.startClock();
-    cv::Mat nearestMat = nearestInterpolation(image, 700, 700);
-    timer.endClock("Resize neasrest");
+    cv::Mat boxMat = boxFilter2D(image, 3, 3);
+    timer.endClock("BoxFilter runtime");
     timer.startClock();
-    cv::Mat bilinearMat = bilinearInterpolation(image, 700, 700);
-    timer.endClock("Resize bilinear");
+    cv::Mat gausMat = gaussianFilter2D(image, 5);
+    timer.endClock("Gaussian Filter runtime");
+
 
     // Display the original and grayscale images
     cv::imshow("Original Image", image);
-    cv::imshow("Resized Nearest Image", nearestMat);
-    cv::imshow("Resized Bilinear Image", bilinearMat);
+    cv::imshow("Box Filtered", boxMat);
+    cv::imshow("Box Filtered", gausMat);
 
     // Wait for a key press
     cv::waitKey(0);

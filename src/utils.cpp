@@ -87,3 +87,22 @@ public:
         std::cout << " sec" << std::endl;
     }
 };
+
+int countNonMatchingPixels(const cv::Mat& mat1, const cv::Mat& mat2) {
+    // Check if dimensions are equal
+    if (mat1.size() != mat2.size() || mat1.type() != mat2.type()) {
+        return -1; // Return -1 indicating mismatch in dimensions or type
+    }
+
+    int nonMatchingPixels = 0;
+    // Iterate over each pixel
+    for (int y = 0; y < mat1.rows; ++y) {
+        for (int x = 0; x < mat1.cols; ++x) {
+            // Compare pixel values
+            if (mat1.at<cv::Vec3b>(y, x) != mat2.at<cv::Vec3b>(y, x)) {
+                nonMatchingPixels++;
+            }
+        }
+    }
+    return nonMatchingPixels;
+}

@@ -7,6 +7,9 @@ set(SOURCES
     src/Image_Processing_Algorithms.cpp
     src/utils.cpp
     src/color/grayscale.cpp
+    src/color/color_space.cpp
+    src/filter/filter_alg.cpp
+    src/filter/filter_kernel.cpp
     src/geometry/flip.cpp
     src/geometry/resize.cpp
     src/recognition/color_segmentation.cpp
@@ -17,6 +20,9 @@ set(INCLUDES
     include/Image_Processing_Algorithms.h
     include/utils.h
     include/color/grayscale.h
+    include/color/color_space.h
+    include/filter/filter_alg.h
+    include/filter/filter_kernel.h
     include/geometry/flip.h
     include/geometry/resize.h
     include/recognition/color_segmentation_h

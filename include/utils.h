@@ -37,4 +37,8 @@ public:
         std::cout << " sec" << std::endl;
     }
 };
+
+int countNonMatchingPixels(const cv::Mat& mat1, const cv::Mat& mat2);
+
+
 #endif UTILS_H
