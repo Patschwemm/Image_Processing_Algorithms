@@ -7,6 +7,7 @@
 #include <geometry/flip.h>
 #include <geometry/resize.h>
 #include <filter/filter_alg.h>
+#include <color/color_space.h>
 
 int main() {
 
@@ -29,12 +30,18 @@ int main() {
     timer.startClock();
     cv::Mat gausMat = gaussianFilter2D(image, 5);
     timer.endClock("Gaussian Filter runtime");
+    timer.startClock();
+    cv::Mat medMat = medianFilter(image, 3, 3);
+    timer.endClock("Gaussian Filter runtime");
 
+    cv::Vec3b vec = cv::Vec3b(250, 0, 0);
+    cv::Vec3d hsv_vec = rgb_pixel_to_hsv(vec);
 
     // Display the original and grayscale images
     cv::imshow("Original Image", image);
     cv::imshow("Box Filtered", boxMat);
-    cv::imshow("Box Filtered", gausMat);
+    cv::imshow("Gaus Filtered", gausMat);
+    cv::imshow("Med Filtered", medMat);
 
     // Wait for a key press
     cv::waitKey(0);
