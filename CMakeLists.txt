@@ -10,6 +10,7 @@ set(SOURCES
     src/color/color_space.cpp
     src/filter/filter_alg.cpp
     src/filter/filter_kernel.cpp
+    src/filter/noise_induction.cpp
     src/geometry/flip.cpp
     src/geometry/resize.cpp
     src/recognition/color_segmentation.cpp
@@ -23,6 +24,7 @@ set(INCLUDES
     include/color/color_space.h
     include/filter/filter_alg.h
     include/filter/filter_kernel.h
+    include/filter/noise_induction.h
     include/geometry/flip.h
     include/geometry/resize.h
     include/recognition/color_segmentation_h
