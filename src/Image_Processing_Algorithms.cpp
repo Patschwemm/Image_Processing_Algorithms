@@ -21,16 +21,12 @@ int main() {
     cv::Mat spMat = noiseImgSaltPepper(image, 0.1, false);
     timer.endClock("SP Noise runtime");
     timer.startClock();
-    cv::Mat medMat = medianFilter(spMat, 3, 3);
-    timer.endClock("Med Filter runtime");
-
-    cv::Vec3b vec = cv::Vec3b(250, 0, 0);
-    cv::Vec3d hsv_vec = rgb_pixel_to_hsv(vec);
+    cv::Mat sobelMat = sobelFilter2D(image);
+    timer.endClock("Sobel Filter runtime");
 
     // Display the original and grayscale images
-    //cv::imshow("Original Image", image);
     cv::imshow("SP noisy", spMat);
-    cv::imshow("Med Filtered", medMat);
+    cv::imshow("Sobel Filtered", sobelMat);
 
     // Wait for a key press
     cv::waitKey(0);

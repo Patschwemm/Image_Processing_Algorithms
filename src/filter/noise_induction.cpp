@@ -26,6 +26,5 @@ cv::Mat noiseImgSaltPepper(cv::Mat& input, double noise_percent, bool inplace) {
 			}
 		}
 	}
-			
 	return noiseMat;
 }

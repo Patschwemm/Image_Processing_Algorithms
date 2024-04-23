@@ -1,5 +1,6 @@
 #include <opencv2/opencv.hpp>
 #include <cmath>
+#include <string>
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -8,10 +9,8 @@
 cv::Mat createBoxFilter(int height, int width) {
 	// Create a matrix filled with ones
 	cv::Mat kernel = cv::Mat::ones(height, width, CV_64F);
-
 	// Normalize the kernel
 	kernel /= (double)(height * width);
-
 	return kernel;
 }
 
@@ -41,4 +40,26 @@ cv::Mat createGaussianFilter(int k_size) {
 	kernel = kernel / cv::sum(kernel)[0];
 
 	return kernel;
+}
+
+cv::Mat createSobelFilter(std::string axis) {
+	cv::Mat sobelFilter;
+	if (axis == "x") {
+		sobelFilter = (cv::Mat_<float>(3, 3) << 
+			-1, 0, 1,
+			-2, 0, 2,
+			-1, 0, 1
+			);
+	}
+	else if (axis == "y") {
+		sobelFilter = (cv::Mat_<float>(3, 3) << 
+			1, 2, 1,
+			0, 0, 0,
+			-1, -2, -1
+			);
+	}
+	else {
+		std::cerr << "Error: input for create sobel filter has to be either 'x' or 'y'" << std::endl;
+	}
+	return sobelFilter;
 }

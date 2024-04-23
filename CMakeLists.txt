@@ -14,6 +14,7 @@ set(SOURCES
     src/geometry/flip.cpp
     src/geometry/resize.cpp
     src/recognition/color_segmentation.cpp
+    src/recognition/detection.cpp
 )
 
 # Set the directory where your header files are located
@@ -28,6 +29,7 @@ set(INCLUDES
     include/geometry/flip.h
     include/geometry/resize.h
     include/recognition/color_segmentation_h
+    include/recognition/detection.h
 )
 
 # Set the directory where your include files are located
