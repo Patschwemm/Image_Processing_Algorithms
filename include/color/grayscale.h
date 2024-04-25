@@ -8,7 +8,7 @@ public:
 	void operator()(cv::Vec3b& pixel, const int* position) const noexcept;
 };
 
-cv::Mat grayscaleTransform(cv::Mat& input, bool in_place);
-
+cv::Mat channelShrink(cv::Mat input);
+cv::Mat grayscaleTransform(cv::Mat& input, bool in_place, bool keepdim);
 
 #endif GRAYSCALE_H
