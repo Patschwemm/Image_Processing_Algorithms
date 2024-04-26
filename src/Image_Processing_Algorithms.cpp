@@ -8,6 +8,7 @@
 #include <geometry/resize.h>
 #include <filter/filter_alg.h>
 #include <filter/noise_induction.h>
+#include <filter/sobel_filter.h>
 #include <color/color_space.h>
 
 int main() {
@@ -21,12 +22,20 @@ int main() {
     cv::Mat spMat = noiseImgSaltPepper(image, 0.1, false);
     timer.endClock("SP Noise runtime");
     timer.startClock();
-    cv::Mat sobelMat = sobelFilter2D(image);
+    cv::Mat sobelMat = sobelFilter2D(image, true);
+    timer.endClock("Sobel Filter runtime");
+    timer.startClock();
+    cv::Mat gradMat = gradImgMagnitude(image, true);
+    timer.endClock("Mag Filter runtime");
+    timer.startClock();
+    cv::Mat orientMat = gradImgOrientation(image);
     timer.endClock("Sobel Filter runtime");
 
     // Display the original and grayscale images
     cv::imshow("SP noisy", spMat);
     cv::imshow("Sobel Filtered", sobelMat);
+    cv::imshow("Mag Filtered", gradMat);
+    cv::imshow("Orient Filtered", orientMat);
 
     // Wait for a key press
     cv::waitKey(0);

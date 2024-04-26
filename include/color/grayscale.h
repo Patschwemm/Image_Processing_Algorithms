@@ -8,6 +8,12 @@ public:
 	void operator()(cv::Vec3b& pixel, const int* position) const noexcept;
 };
 
+class GrayscaleTransformerFloat {
+public:
+	void operator()(cv::Vec3d& pixel, const int* position) const noexcept;
+};
+
+
 cv::Mat channelShrink(cv::Mat input);
 cv::Mat grayscaleTransform(cv::Mat& input, bool in_place, bool keepdim);
 

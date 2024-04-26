@@ -11,6 +11,7 @@ set(SOURCES
     src/filter/filter_alg.cpp
     src/filter/filter_kernel.cpp
     src/filter/noise_induction.cpp
+    src/filter/sobel_filter.cpp
     src/geometry/flip.cpp
     src/geometry/resize.cpp
     src/recognition/color_segmentation.cpp
@@ -26,9 +27,10 @@ set(INCLUDES
     include/filter/filter_alg.h
     include/filter/filter_kernel.h
     include/filter/noise_induction.h
+    include/filter/sobel_filter.h
     include/geometry/flip.h
     include/geometry/resize.h
-    include/recognition/color_segmentation_h
+    include/recognition/color_segmentation.h
     include/recognition/detection.h
 )
 

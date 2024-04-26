@@ -2,6 +2,7 @@
 #include <filter/filter_kernel.h>
 #include <utils.h>
 #include <math.h>
+#include <color/grayscale.h>
 
 cv::Mat filterAlg(cv::Mat& input, cv::Mat& kernel) {
 	int k_height = (kernel.rows - 1) / 2;
@@ -92,22 +93,4 @@ cv::Mat gaussianFilter2D(cv::Mat& input, int k_size) {
 	// Run Filter
 	cv::Mat boxFilteredMat = filterAlg(input, gausKernel);
 	return boxFilteredMat;
-}
-
-cv::Mat sobelFilter2D(cv::Mat& input) {
-	// Init sobel filters
-	cv::Mat sobelKernelX = createSobelFilter("x");
-	cv::Mat sobelKernelY = createSobelFilter("y");
-	// Make a copy of the input matrix
-	cv::Mat inputCopy = input.clone();
-
-	// Filter the copied input matrix with sobel kernels
-	cv::Mat sobelMatX = filterAlg(input, sobelKernelX);
-	cv::Mat sobelMatY = filterAlg(input, sobelKernelY);
-	// Combine the results of X and Y sobel filters
-	cv::Mat gradImg;
-	cv::sqrt(sobelMatX.mul(sobelMatX) + sobelMatY.mul(sobelMatY), gradImg);
-	cv::normalize(gradImg, gradImg, 0, 1, cv::NORM_MINMAX);
-
-	return gradImg;
 }
